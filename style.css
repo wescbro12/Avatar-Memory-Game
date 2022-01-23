@@ -17,37 +17,116 @@ HARD-20 CARDS
 body {
     background-image: url("/char_imgs/king_board.jpg");
     background-repeat: no-repeat;
-    background-size: cover; 
+      background-attachment: fixed;
+    background-size: 100% 100%; 
     font-family: 'Yatra One', cursive;
+    /* height: 100vh; */
+    /* display: flex; */
     
 }
-#game-title {
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 20px;
+  margin: 75px;
+  justify-content: center;
+  align-items: center;
+  perspective: 500px;
+
+}
+
+
+.card {
+    position: relative;
+    background-color: white;
+    width: 175px;
+    height: 125px;
+}
+.card-front {
+    transform: rotateY(180deg);
+}
+.card-back {
+    background-color: cadetblue;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    transition: transfrom 500ms ease-in-out;
+}
+.back-face {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    /* object-fit: cover; */
+}
+.front-face {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card:hover .card-back{
+    transform: rotateY(-180deg);
+}
+.card:hover .card-front {
+    transform: rotateY(0);
+}
+/* #game-title {
     background-color: rgb(15, 15, 14);
     text-align: center;
     font-style: italic;
     color: cornsilk;
+} */
+
+#wel-modal {
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid red;
+    padding: 8px;
+    background-color: salmon;
 }
+/* .show {
+    display: flex !important;
+} */
 
 /* making the cards*/
-#card {
-    width: 80px;
-    height: 120px;
+/* .card-easy {
+grid-template-columns: 100px 50px 100px;
+grid-template-rows: 80px auto 80px;
+column-gap: 10px;
+row-gap: 15px;
+justify-items: center;
+justify-content: center;
+border: 2px solid red; */
+
+    /* width: 25%;
+    height: 33.33%;
     font-size: 40px;
     float: left;
-    /* image-rendering: auto; */
-    background-image: url("/char_imgs/fire_nation.png");
-    
     margin: 10px;
     line-height: 120px;
     border-radius: 3px;
-    text-align: left;
+    position: relative;
+    
 
-    transform: rotate(180deg);
-    transition: transform 0.7s;
+    /* transform: rotate(180deg);
+    transition: transform 0.7s; */
 
-    background-color: #a32626;
+    
 
-}
+
 
 #play-settings {
     position: absolute;
@@ -77,3 +156,43 @@ body {
 #hard {
     background-color: darkred;
 }
+
+/* creating the cards */
+
+
+
+
+    /* width: 1200px;
+    height: 900px;
+    margin: auto;
+    display: -ms-inline-grid;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    border: 2px solid rgb(240, 22, 7); */
+   
+}
+/* .card-easy {
+    width:calc(25% - 10px);
+    height:calc(33.33% - 10px);
+    margin: 5px;
+    position: relative;
+    border: 2px solid chartreuse;
+} */
+
+/* .front-face,
+.back-face {
+    width: 25%;
+    height: 25%;
+    padding: 20px;
+   justify-items: center;
+    /* position: absolute; */
+    border: 2px solid pink;
+} */
+
+/* img {
+    max-width: 75%;
+    max-height: 75%;
+    object-fit: cover;
+
+} */
