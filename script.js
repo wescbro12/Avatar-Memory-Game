@@ -29,8 +29,8 @@ IF CARDS AREN'T A MATCH THEN CARDS RETURN TO STARTING POSITIONS(FLIP BACK OVER)-
 const gameBoard = document.getElementById('game-board');
 let cardArr = []
 const cardEasy = ['char_imgs/aang', 'char_imgs/aang', 'char_imgs/katara', 'char_imgs/katara', 'char_imgs/sokka', 'char_imgs/sokka', 'char_imgs/toph', 'char_imgs/toph', 'char_imgs/momo', 'char_imgs/momo']
-const cardMed = [];
-const cardHard = [];
+const cardMed = ['char_imgs/aang', 'char_imgs/aang', 'char_imgs/katara', 'char_imgs/katara', 'char_imgs/sokka', 'char_imgs/sokka', 'char_imgs/toph', 'char_imgs/toph', 'char_imgs/momo', 'char_imgs/momo', 'char_imgs/bumi', 'char_imgs/bumi', 'char_imgs/suki', 'char_imgs/suki', 'char_imgs/zuko','char_imgs/zuko'];
+const cardHard = ['char_imgs/aang', 'char_imgs/aang', 'char_imgs/katara', 'char_imgs/katara', 'char_imgs/sokka', 'char_imgs/sokka', 'char_imgs/toph', 'char_imgs/toph', 'char_imgs/momo', 'char_imgs/momo', 'char_imgs/bumi', 'char_imgs/bumi', 'char_imgs/suki', 'char_imgs/suki', 'char_imgs/zuko', 'char_imgs/zuko', 'char_imgs/iroh', 'char_imgs/iroh', 'char_imgs/azula','char_imgs/azula'];
 
 let clickedArr = [];
 let itemArr = [];
@@ -46,4 +46,7 @@ function shuffleArr(array) {
         [array[i], array[j] = array[j], array[i]];
     }
 }
+
+
+//SET UP GAME\\
 

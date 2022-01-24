@@ -47,7 +47,7 @@ body {
     transform: rotateY(180deg);
 }
 .card-back {
-    background-color: cadetblue;
+    background-color: rgb(71, 135, 138);
 }
 
 .card-face {
