@@ -127,10 +127,10 @@ body {
     justify-content: center;
     align-items: center;
 }
-.card:hover .card-back{
+.card.visable.card-back{
     transform: rotateY(-180deg);
 }
-.card:hover .card-front {
+.card:visable.card-front {
     transform: rotateY(0);
 }
 #game-title {
