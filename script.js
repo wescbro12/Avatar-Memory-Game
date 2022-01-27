@@ -8,6 +8,15 @@ IF CARDS AREN'T A MATCH THEN CARDS RETURN TO STARTING POSITIONS(FLIP BACK OVER)-
 *HARD LEVEL- ADD TIMER AND PLAYER ONLY HAS 1-2 MIN TO CLEAR THE PLAYING DECK-IF STATEMENTS AND FUNCTIONS
 */
 
+// checking that the JS is working
+let easyBtnEl = document.getElementById('easy');
+easyBtnEl.addEventListener('click', (evt) => {
+    // difficulty = 'easy';
+    // cardBkFace = document.getElementById('card-easy');
+    // diffMode();
+    // setGame()
+    console.log('ive been clicked but im a easy butt')
+});
 
 class Game {
     constructor(totalTime, cards) {
@@ -53,6 +62,6 @@ function ready() {
     cards.forEach(card => {
         card.addEventListener('click', (evt) => {
             game.flipCard(card);
-        })
-    })
+        });
+    });
 }

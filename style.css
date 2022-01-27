@@ -81,7 +81,7 @@ body {
 .timeInfo {
     font-family: 'Yatra One', cursive;
     font-size: 4em;
-    color:rgba(21, 24, 23, 0.842);
+    color:rgba(255, 154, 154, 0.897);
     justify-content: space-evenly;
 }
 
@@ -193,7 +193,7 @@ border: 2px solid red; */
 
 
 #play-settings {
-    position: absolute;
+    position: relative;
     bottom: 0;
     right: 0;
     width: 100%;
@@ -235,7 +235,7 @@ border: 2px solid red; */
     margin: auto;
     border: 2px solid rgb(240, 22, 7); */
    
-}
+
 /* .card-easy {
     width:calc(25% - 10px);
     height:calc(33.33% - 10px);
@@ -251,8 +251,7 @@ border: 2px solid red; */
     padding: 20px;
    justify-items: center;
     /* position: absolute; */
-    border: 2px solid pink;
-} */
+
 
 /* img {
     max-width: 75%;
