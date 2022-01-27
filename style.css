@@ -17,7 +17,7 @@ HARD-20 CARDS
 body {
     background-image: url("/char_imgs/king_board.jpg");
     background-repeat: no-repeat;
-      background-attachment: fixed;
+    background-attachment: fixed;
     background-size: 100% 100%; 
     font-family: 'Yatra One', cursive;
     /* height: 100vh; */
@@ -27,19 +27,67 @@ body {
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(5, auto);
   grid-gap: 20px;
   margin: 75px;
   justify-content: center;
   align-items: center;
   perspective: 500px;
-
 }
 
+.overlay-text {
+   position: fixed;
+   top: 0;
+   left: 0; 
+   right: 0;
+   bottom: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 100;  
+   color: bisque;
+  font-family: 'Yatra One', cursive;
+  display: none;  
+}
+
+.overlay-text-small {
+    font-size: .3em;
+}
+
+.overlay-text.visable {
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards;
+    
+}
+
+@keyframes overlay-grow {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 0;
+    }
+    to {
+         background-color: rgba(0, 0, 0, .8);
+        font-size: 10em;
+
+    }
+}
+
+.gameStats{
+    grid-column: 1/ -1;
+    display: flex;
+    justify-content: space-between;
+}
+.timeInfo {
+    font-family: 'Yatra One', cursive;
+    font-size: 4em;
+    color:rgba(21, 24, 23, 0.842);
+    justify-content: space-evenly;
+}
 
 .card {
     position: relative;
-    background-color: white;
+    /* background-color: white; */
     width: 175px;
     height: 125px;
 }
@@ -47,7 +95,12 @@ body {
     transform: rotateY(180deg);
 }
 .card-back {
-    background-color: rgb(71, 135, 138);
+    /* background-color: rgb(71, 135, 138); */
+    transform: rotateY(0);
+}
+
+.card.matched .front-face {
+    display: none;
 }
 
 .card-face {
@@ -58,18 +111,18 @@ body {
     justify-content: center;
     align-items: center;
     backface-visibility: hidden;
-    transition: transfrom 500ms ease-in-out;
+    transition: 500ms ease-in-out;
 }
 .back-face {
     position: absolute;
-    width: 75%;
-    height: 75%;
+    width: 100%;
+    height: 100%;
     /* object-fit: cover; */
 }
 .front-face {
     position: absolute;
-    width: 75%;
-    height: 75%;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,22 +133,33 @@ body {
 .card:hover .card-front {
     transform: rotateY(0);
 }
-/* #game-title {
+#game-title {
     background-color: rgb(15, 15, 14);
     text-align: center;
     font-style: italic;
     color: cornsilk;
-} */
+}
 
 #wel-modal {
-    /* display: none; */
-    display: flex;
+    display: none;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 3px solid red;
     padding: 8px;
     background-color: salmon;
+}
+
+@media (max-width: 600px) {
+    .game-board {
+        grid-template-columns: repeat(2, auto);
+   
+    }
+    .gameStats {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 /* .show {
     display: flex !important;

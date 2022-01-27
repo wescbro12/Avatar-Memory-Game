@@ -23,10 +23,10 @@ RESET BUTTON
 </head>
 
 <body>
-    <!-- <div id="game-title">
+    <div id="game-title">
         <h1>AVATAR MEMORY GAME</h1>
-    </div> -->
-    <!-- <button class="open">WELCOME!</button>
+    </div>
+    <!-- <button class="start-btn">START</button>
     <div id="wel-modal">
         <h2>WELCOME!</h2>
         <p>This is the memory game based off the beloved classic show, Avatar, the last Airbender. The board is set up
@@ -35,7 +35,56 @@ RESET BUTTON
             board. Good Luck!</p>
         <button class="modal_button">Flamey-O!</button>
     </div> -->
+    <div  id="start-over-text" class="overlay-text">
+        CLICK TO START
+    </div>
+    <div id="game-over-text" class="overlay-text">
+        GAME OVER
+        <span class="overlay-text-small">Click to play again</span>
+    </div>
+    <div id="win-over-text" class="overlay-text">
+        WINNER
+        <span class="overlay-text-small">Click to play again</span>
+    </div>
+
+
+
+
+
     <div class="game-board">
+        <!-- <div CLASS="cards visable">
+            <img class="back-face" id="card-easy" src="/char_imgs/water_tribe.png">
+            <img class="back-face" id="card-medium" src="/char_imgs/earth_king.jpg">
+            <img class="back-face" id="card-hard" src="/char_imgs/fire_nation.png">
+
+        </div> -->
+
+        <div class="gameStats">
+            <div class="gameInfo">
+                <div class="timeInfo">
+                    Timer <span id="time-remaining">100</span>
+                </div>
+            </div>
+            <div class="timeInfo">
+                Clicks <span id="clicks">0</span>
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/katara.jpg" >
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/katara.jpg">
+            </div>
+        </div>
         <div class="card visable">
             <div class="card-back card-face">
                 <img class="back-face" src="/char_imgs/water_tribe.png">
@@ -44,6 +93,154 @@ RESET BUTTON
                 <img class="front-face" src="/char_imgs/sokka.jpg">
             </div>
         </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/sokka.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/aang.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/aang.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/azula.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/azula.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/appa_1.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/appa_1.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/iroh.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/iroh.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/momo.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/momo.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/ozai.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/ozai.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/toph.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/toph.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/zuko.jpg">
+            </div>
+        </div>
+        <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/water_tribe.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/zuko.jpg">
+            </div>
+        </div>
+          
+
+    
+    </div>
+    <!-- <div class="card visable">
+            <div class="card-back card-face">
+                <img class="back-face" src="/char_imgs/fire_nation.png">
+            </div>
+            <div class="card-front card-face">
+                <img class="front-face" src="/char_imgs/sokka.jpg">
+            </div>
+        </div>
         <div class="card">
             <div class="card-back card-face">
                 <img class="back-face" src="/char_imgs/water_tribe.png">
@@ -67,8 +264,25 @@ RESET BUTTON
             <div class="card-front card-face">
                 <img class="front-face" src="/char_imgs/katara.jpg">
             </div>
+        <div class="card-back card-face">
+            <img class="back-face" src="/char_imgs/water_tribe.png">
         </div>
-        <!-- <div class="card-easy">
+        <div class="card-front card-face">
+            <img class="front-face" src="/char_imgs/aang.jpg">
+        <div class="card-back card-face">
+            <img class="back-face" src="/char_imgs/water_tribe.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="front-face" src="/char_imgs/aang.jpg">
+        </div>
+        </div>
+        </div> -->
+
+
+
+
+
+    <!-- <div class="card-easy">
             1<img class="front-face" src="/char_imgs/water_tribe.png" alt="water_tribe" />
             <img class="back-face" src="char_imgs/sokka.jpg" alt="sokka" />
             <img class="front-face" src="/char_imgs/water_tribe.png" alt="water_tribe" />
@@ -90,9 +304,7 @@ RESET BUTTON
             <img class="front-face" src="/char_imgs/water_tribe.png" alt="water_tribe" />
             <img class="back-face" src="char_imgs/momo.jpg" alt="momo" /> -->
 
-        </div> 
 
-    </div>
 
 
     <div id="play-settings">
