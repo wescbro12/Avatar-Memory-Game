@@ -28,9 +28,36 @@ class Game {
         this.timeRemaining = this.totalTime;
         this.matchedCards = [];
         this.busy = true;
-        this.shuffleCards();
-        this.counter = this.counter();
+        setTimeout(() => {
+            this.shuffleCards(this.cardsArray);
+            this.counter = this.startCounter();
+            this.busy = false;
+        }, 500)
+        this.hideCards();
+
+        this.timer.innerText = this.timeRemaining;
+        this.ticker.innerText = this.totalClicks;
     }
+
+    //Timer function\\
+
+    startCounter() {
+        return setInterval(() => {
+            this.timeRemaining--;
+            this.timer.innerText = this.timeRemaining;
+            if (this.timeRemaining === 0) {
+                this.gameOver();// create game over function
+            }
+        }, 1000);
+    }
+
+
+    hideCards() {
+        this.cardsArray.forEach(card => {
+            card.classList.remove('visable');
+        });
+    }
+
 
     // card flip function\\
     flipCard(card) {
@@ -40,29 +67,74 @@ class Game {
             card.classList.add('visable');
             console.log('ah, you clicked me');
 
-            //if statement to check for a match
+            if (this.cardToCheck) {
+                this.checkCardMatch(card);
+            } else {
+                this.cardToCheck = card;
+            }
 
         }
     }
+    // Checking to see if the player can flip the card
+    canFlip(card) {
+        return !this.busy && !this.matchedCards.includes(card) && card !== this.cardToCheck;
 
-    //Timer function\\
-
-    // counter() {
-    //     return setInterval(() => {
-    //         this.timeRemaining--;
-    //         this.timer.innerText = this.timeRemaining;
-    //         if (this.timeRemaining === 0) {
-    //             this.gameOver();// create game over function
-    //         }
-    //     })
-    // }
-
-    //game over\\
-    gameOver() {
-        clearInterval()
+        // return true
     }
+
     //check if cards match\\
 
+    checkCardMatch(card) {
+        if (this.getCardType(card) === this.getCardType(this.cardToCheck)) {
+            this.cardMatch(card, this.cardToCheck);
+        } else {
+            this.cardMisMatch(card, this.cardToCheck);
+        }
+        this.cardToCheck = null;
+
+    }
+
+    getCardType(card) {
+        return card.getElementsByClassName('front-face')[0].src;
+    }
+
+
+    cardMatch(card1, card2) {
+        this.matchedCards.push(card1);
+        this.matchedCards.push(card2);
+        if (this.matchedCards.length === this.cardsArray.length) {
+            this.winning();
+            //remove from board
+        }
+        // console.log(this.matchedCards)
+        console.log('you got a match')
+    }
+
+
+    cardMisMatch(card1, card2) {
+        this.busy = true
+        setTimeout(() => {
+            card1.classList.remove('visable');
+            card2.classList.remove('visable');
+            this.busy = false;
+        }, 1000);
+        console.log('this is not the card you are looking for')
+    }
+
+
+
+
+    // Game Over Function\\
+    gameOver() {
+        clearInterval(this.counter);
+        document.getElementById('game-over-text').classList.add('visable');
+    }
+
+    // Winner Function\\
+    winning() {
+        clearInterval(this.counter);
+        document.getElementById('win-over-text').classList.add('visable');
+    }
 
 
 
@@ -75,11 +147,7 @@ class Game {
         }
     }
 
-    // Checking to see if the player can flip the card
-    canFlip(card) {
-        return true;
-        // return !this.busy && !this.matchedCards.includes(card) && card !== this.cardToCheck;
-    }
+
 
 }
 //button functions\\
@@ -87,6 +155,8 @@ class Game {
 let easyBtnEl = document.getElementById('easy');
 easyBtnEl.addEventListener('click', (evt) => {
     changeCardBacks('easy')
+    // let easyGame = new Game(100, cards);
+    // easyGame.startGame()
 
     console.log('ive been clicked but im a easy butt')
 });
@@ -94,12 +164,17 @@ easyBtnEl.addEventListener('click', (evt) => {
 let medBtnEl = document.getElementById('medium');
 medBtnEl.addEventListener('click', (evt) => {
     changeCardBacks('medium')
+    // let medGame = new Game(50, cards);
+    // medGame.startGame()
+
     console.log('ive been clicked but im a medium butt')
 });
 
 let hrdBtnEl = document.getElementById('hard');
 hrdBtnEl.addEventListener('click', (evt) => {
     changeCardBacks('hard')
+    // let hardGame = new Game(25, cards);
+    // hardGame.startGame()
     console.log('ive been clicked but im a hard butt')
 });
 
@@ -139,9 +214,12 @@ function ready() {
             game.flipCard(card);
         });
     });
+
 }
 
+
 ready();
+
 
 
 
