@@ -9,14 +9,7 @@ IF CARDS AREN'T A MATCH THEN CARDS RETURN TO STARTING POSITIONS(FLIP BACK OVER)-
 */
 
 // checking that the JS is working
-let easyBtnEl = document.getElementById('easy');
-easyBtnEl.addEventListener('click', (evt) => {
-    // difficulty = 'easy';
-    // cardBkFace = document.getElementById('card-easy');
-    // diffMode();
-    // setGame()
-    console.log('ive been clicked but im a easy butt')
-});
+
 
 class Game {
     constructor(totalTime, cards) {
@@ -26,7 +19,9 @@ class Game {
         this.timer = document.getElementById('time-remaining');
         this.ticker = document.getElementById('clicks');
 
+
     }
+    //start game function\\
     startGame() {
         this.cardToCheck = null;
         this.totalClicks = 0;
@@ -34,7 +29,10 @@ class Game {
         this.matchedCards = [];
         this.busy = true;
         this.shuffleCards();
-        }
+        this.counter = this.counter();
+    }
+
+    // card flip function\\
     flipCard(card) {
         if (this.canFlip(card)) {
             this.totalClicks++;
@@ -46,7 +44,29 @@ class Game {
 
         }
     }
-// Card Shuffle- Fisher-Yates shuffle\\
+
+    //Timer function\\
+
+    // counter() {
+    //     return setInterval(() => {
+    //         this.timeRemaining--;
+    //         this.timer.innerText = this.timeRemaining;
+    //         if (this.timeRemaining === 0) {
+    //             this.gameOver();// create game over function
+    //         }
+    //     })
+    // }
+
+    //game over\\
+    gameOver() {
+        clearInterval()
+    }
+    //check if cards match\\
+
+
+
+
+    // Card Shuffle- Fisher-Yates shuffle\\
     shuffleCards() {
         for (let i = this.cardsArray.length - 1; i > 0; i--) {
             let randInd = Math.floor(Math.random() * (i + 1));
@@ -55,36 +75,58 @@ class Game {
         }
     }
 
-
+    // Checking to see if the player can flip the card
     canFlip(card) {
         return true;
         // return !this.busy && !this.matchedCards.includes(card) && card !== this.cardToCheck;
     }
 
 }
+//button functions\\
+// get the colors of the back of the cards to change when a diff is selected
+let easyBtnEl = document.getElementById('easy');
+easyBtnEl.addEventListener('click', (evt) => {
+    changeCardBacks('easy')
 
-// function play() {
-//     let cards = Array.from(document.getElementsByClassName('card'));
-//     let game = new Game(100, cards);
-//     game.startGame();
+    console.log('ive been clicked but im a easy butt')
+});
 
-//     cards.forEach(card => {
-//         card.addEventListener('click', (evt) =>
-//             game.flipCard(card))
-//         console.log('flippin cards')
-//     })
-// }
-if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready);
-} else {
-    ready();
+let medBtnEl = document.getElementById('medium');
+medBtnEl.addEventListener('click', (evt) => {
+    changeCardBacks('medium')
+    console.log('ive been clicked but im a medium butt')
+});
+
+let hrdBtnEl = document.getElementById('hard');
+hrdBtnEl.addEventListener('click', (evt) => {
+    changeCardBacks('hard')
+    console.log('ive been clicked but im a hard butt')
+});
+
+// Setting the card back base on difficulty\\
+function changeCardBacks(difficulty) {
+    let backFace
+    if (difficulty === 'easy') {
+        backFace = '/char_imgs/water_tribe.png'
+    } else if (difficulty === 'medium') {
+        backFace = '/char_imgs/earth_king.jpg'
+    } else if (difficulty === 'hard') {
+        backFace = '/char_imgs/fire_nation.png'
+    } else {
+        backFace = '/char_imgs/air_nomad.png'
+    }
+    let cardBacks = Array.from(document.getElementsByClassName('back-face'));
+    cardBacks.forEach(back => {
+        back.setAttribute('src', backFace)
+    })
 }
 
-
+// Setting up the board\\
 function ready() {
     let overlays = Array.from(document.getElementsByClassName('overlay-text'));
     let cards = Array.from(document.getElementsByClassName('card'));
     let game = new Game(100, cards);
+    changeCardBacks('')
 
     overlays.forEach(overlay => {
         overlay.addEventListener('click', () => {
@@ -99,3 +141,15 @@ function ready() {
     });
 }
 
+ready();
+
+
+
+//THINGS TO DO\\
+/*
+Finish the buttons- add event listeners  that will change the timer and the card back colors
+Create the timer
+create the matching function -sepererate functio for if not a match?
+call for the game over and winning overlays
+fix modal and add it to the ready function
+ */
