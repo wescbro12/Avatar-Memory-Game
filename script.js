@@ -33,7 +33,7 @@ class Game {
             this.counter = this.startCounter();
             this.busy = false;
         }, 500)
-        this.hideCards();
+        // this.hideCards();
 
         this.timer.innerText = this.timeRemaining;
         this.ticker.innerText = this.totalClicks;
@@ -53,8 +53,8 @@ class Game {
 
 
     hideCards() {
-        this.cardsArray.forEach(card => {
-            card.classList.remove('visable');
+        this.matchedCards.forEach(card => {
+            card.classList.add('matched');
         });
     }
 
@@ -87,9 +87,11 @@ class Game {
     checkCardMatch(card) {
         if (this.getCardType(card) === this.getCardType(this.cardToCheck)) {
             this.cardMatch(card, this.cardToCheck);
+            this.hideCards()
         } else {
             this.cardMisMatch(card, this.cardToCheck);
         }
+        
         this.cardToCheck = null;
 
     }
@@ -102,10 +104,12 @@ class Game {
     cardMatch(card1, card2) {
         this.matchedCards.push(card1);
         this.matchedCards.push(card2);
+        
         if (this.matchedCards.length === this.cardsArray.length) {
             this.winning();
             //remove from board
         }
+
         // console.log(this.matchedCards)
         console.log('you got a match')
     }
@@ -162,6 +166,7 @@ function ready() {
         overlay.addEventListener('click', () => {
             overlay.classList.remove("visable");
             // game.startGame();
+            // dispModal()
         });
     });
     // cards.forEach(card => {
@@ -169,6 +174,28 @@ function ready() {
     //         game.flipCard(card);
     //     });
     // });
+
+    // function dispModal() {
+    //     const modal = document.getElementById('wel-modal');
+    //     const openEl = document.querySelector('body > .open');
+    //     const modalBtn = document.querySelector('.modal_button');
+
+    //     modal.classList.add('show')
+
+    //     modalBtn.addEventListener('click', (evt) => {
+    //         modal.classList.remove('show');
+    //         console.log('remove me') // will eventually use this button to start the game
+
+    //         // openEl.addEventListener('click', (evt) => {
+    //         //     modal.classList.add('show');
+    //         //     // modal.style.display = ('block');
+    //         //     console.log('try me')
+    //         // })
+
+
+    //     })
+    // }
+    // dispModal()
 
     //button functions\\
     // get the colors of the back of the cards to change when a diff is selected
