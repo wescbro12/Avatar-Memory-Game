@@ -150,51 +150,6 @@ class Game {
 
 
 }
-//button functions\\
-// get the colors of the back of the cards to change when a diff is selected
-let easyBtnEl = document.getElementById('easy');
-easyBtnEl.addEventListener('click', (evt) => {
-    changeCardBacks('easy')
-    // let easyGame = new Game(100, cards);
-    // easyGame.startGame()
-
-    console.log('ive been clicked but im a easy butt')
-});
-
-let medBtnEl = document.getElementById('medium');
-medBtnEl.addEventListener('click', (evt) => {
-    changeCardBacks('medium')
-    // let medGame = new Game(50, cards);
-    // medGame.startGame()
-
-    console.log('ive been clicked but im a medium butt')
-});
-
-let hrdBtnEl = document.getElementById('hard');
-hrdBtnEl.addEventListener('click', (evt) => {
-    changeCardBacks('hard')
-    // let hardGame = new Game(25, cards);
-    // hardGame.startGame()
-    console.log('ive been clicked but im a hard butt')
-});
-
-// Setting the card back base on difficulty\\
-function changeCardBacks(difficulty) {
-    let backFace
-    if (difficulty === 'easy') {
-        backFace = '/char_imgs/water_tribe.png'
-    } else if (difficulty === 'medium') {
-        backFace = '/char_imgs/earth_king.jpg'
-    } else if (difficulty === 'hard') {
-        backFace = '/char_imgs/fire_nation.png'
-    } else {
-        backFace = '/char_imgs/air_nomad.png'
-    }
-    let cardBacks = Array.from(document.getElementsByClassName('back-face'));
-    cardBacks.forEach(back => {
-        back.setAttribute('src', backFace)
-    })
-}
 
 // Setting up the board\\
 function ready() {
@@ -206,14 +161,78 @@ function ready() {
     overlays.forEach(overlay => {
         overlay.addEventListener('click', () => {
             overlay.classList.remove("visable");
-            game.startGame();
+            // game.startGame();
         });
     });
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            game.flipCard(card);
+    // cards.forEach(card => {
+    //     card.addEventListener('click', () => {
+    //         game.flipCard(card);
+    //     });
+    // });
+
+    //button functions\\
+    // get the colors of the back of the cards to change when a diff is selected
+    let easyBtnEl = document.getElementById('easy');
+    easyBtnEl.addEventListener('click', (evt) => {
+        changeCardBacks('easy')
+        let easyGame = new Game(100, cards);
+        easyGame.startGame()
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                easyGame.flipCard(card);
+            });
         });
+
+        console.log('ive been clicked but im a easy butt')
     });
+
+    let medBtnEl = document.getElementById('medium');
+    medBtnEl.addEventListener('click', (evt) => {
+        changeCardBacks('medium')
+        let medGame = new Game(50, cards);
+        medGame.startGame()
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                medGame.flipCard(card);
+            });
+        });
+
+        console.log('ive been clicked but im a medium butt')
+    });
+
+    let hrdBtnEl = document.getElementById('hard');
+    hrdBtnEl.addEventListener('click', (evt) => {
+        changeCardBacks('hard')
+        let hardGame = new Game(25, cards);
+        hardGame.startGame()
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                hardGame.flipCard(card);
+            });
+        });
+
+        console.log('ive been clicked but im a hard butt')
+    });
+    // Setting the card back base on difficulty\\
+    function changeCardBacks(difficulty) {
+        let backFace
+        if (difficulty === 'easy') {
+            backFace = '/char_imgs/water_tribe.png'
+        } else if (difficulty === 'medium') {
+            backFace = '/char_imgs/earth_king.jpg'
+        } else if (difficulty === 'hard') {
+            backFace = '/char_imgs/fire_nation.png'
+        } else {
+            backFace = '/char_imgs/air_nomad.png'
+        }
+        let cardBacks = Array.from(document.getElementsByClassName('back-face'));
+        cardBacks.forEach(back => {
+            back.setAttribute('src', backFace)
+        })
+    }
 
 }
 
