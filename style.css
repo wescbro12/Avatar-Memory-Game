@@ -149,6 +149,12 @@ body {
     border: 3px solid black;
     padding: 8px;
     background-color: salmon;
+    text-align: center;
+}
+
+.modal_button {
+    align-items: center;
+    text-align: center;
 }
 
 .card.matched  .front-face{
@@ -216,10 +222,10 @@ border: 2px solid red; */
     font-size: larger;
 }
 #easy {
-    background-color: cyan;
+    background-color: rgb(35, 156, 156);
 }
 #medium {
-    background-color: darkgreen;
+    background-color: rgb(5, 71, 5);
 }
 #hard {
     background-color: darkred;

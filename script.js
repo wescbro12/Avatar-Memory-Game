@@ -173,37 +173,32 @@ function ready() {
                 window.location.reload()
             }
 
-            // dispModal();
+            dispModal();
 
         });
     });
-    // cards.forEach(card => {
-    //     card.addEventListener('click', () => {
-    //         game.flipCard(card);
-    //     });
-    // });
-
-    // function dispModal() {
-    //     const modal = document.getElementById('wel-modal');
-    //     const openEl = document.querySelector('body > .open');
-    //     const modalBtn = document.querySelector('.modal_button');
-
+   
+    function dispModal() {
+        const modal = document.getElementById('wel-modal');
+        const openEl = document.querySelector('body > .open');
+        const modalBtn = document.querySelector('.modal_button');
+        modal.style.display = ('block');
        
 
-    //     modalBtn.addEventListener('click', (evt) => {
-    //         modal.classList.remove('show');
-    //         console.log('remove me') // will eventually use this button to start the game
+        modalBtn.addEventListener('click', (evt) => {
+            modal.style.display = 'none';
+            console.log('remove me') // will eventually use this button to start the game
 
-    //         openEl.addEventListener('click', (evt) => {
-    //             modal.classList.add('show');
-    //             // modal.style.display = ('block');
-    //             console.log('try me')
-    //         })
+            openEl.addEventListener('click', (evt) => {
+                modal.classList.add('show');
+                
+                console.log('try me')
+            })
 
 
-    //     })
-    // }
-    // dispModal()
+        })
+    }
+    
 
     //button functions\\
     // get the colors of the back of the cards to change when a diff is selected
