@@ -17,14 +17,14 @@ class Game {
         this.totalTime = totalTime;
         this.timeRemaining = totalTime;
         this.timer = document.getElementById('time-remaining');
-        this.ticker = document.getElementById('clicks');
+        // this.ticker = document.getElementById('clicks');
 
 
     }
     //start game function\\
     startGame() {
         this.cardToCheck = null;
-        this.totalClicks = 0;
+        // this.totalClicks = 0;
         this.timeRemaining = this.totalTime;
         this.matchedCards = [];
         this.busy = true;
@@ -36,7 +36,7 @@ class Game {
         // this.hideCards();
 
         this.timer.innerText = this.timeRemaining;
-        this.ticker.innerText = this.totalClicks;
+        // this.ticker.innerText = this.totalClicks;
     }
 
     //Timer function\\
@@ -46,7 +46,7 @@ class Game {
             this.timeRemaining--;
             this.timer.innerText = this.timeRemaining;
             if (this.timeRemaining === 0) {
-                this.gameOver();// create game over function
+                this.gameOver();
             }
         }, 1000);
     }
@@ -62,8 +62,8 @@ class Game {
     // card flip function\\
     flipCard(card) {
         if (this.canFlip(card)) {
-            this.totalClicks++;
-            this.ticker.innerText = this.totalClicks;
+            // this.totalClicks++;
+            // this.ticker.innerText = this.totalClicks;
             card.classList.add('visable');
             console.log('ah, you clicked me');
 
@@ -87,11 +87,14 @@ class Game {
     checkCardMatch(card) {
         if (this.getCardType(card) === this.getCardType(this.cardToCheck)) {
             this.cardMatch(card, this.cardToCheck);
-            this.hideCards()
+            setTimeout(() => {
+                this.hideCards()
+            }, 900)
+
         } else {
             this.cardMisMatch(card, this.cardToCheck);
         }
-        
+
         this.cardToCheck = null;
 
     }
@@ -104,7 +107,7 @@ class Game {
     cardMatch(card1, card2) {
         this.matchedCards.push(card1);
         this.matchedCards.push(card2);
-        
+
         if (this.matchedCards.length === this.cardsArray.length) {
             this.winning();
             //remove from board
@@ -121,7 +124,7 @@ class Game {
             card1.classList.remove('visable');
             card2.classList.remove('visable');
             this.busy = false;
-        }, 1000);
+        }, 800);
         console.log('this is not the card you are looking for')
     }
 
@@ -132,7 +135,9 @@ class Game {
     gameOver() {
         clearInterval(this.counter);
         document.getElementById('game-over-text').classList.add('visable');
+
     }
+
 
     // Winner Function\\
     winning() {
@@ -159,14 +164,17 @@ class Game {
 function ready() {
     let overlays = Array.from(document.getElementsByClassName('overlay-text'));
     let cards = Array.from(document.getElementsByClassName('card'));
-    let game = new Game(100, cards);
     changeCardBacks('')
 
     overlays.forEach(overlay => {
-        overlay.addEventListener('click', () => {
-            overlay.classList.remove("visable");
-            // game.startGame();
-            // dispModal()
+        overlay.addEventListener('click', (evt) => {
+            evt.target.classList.remove("visable");
+            if (evt.target.classList.contains('play-again')) {
+                window.location.reload()
+            }
+
+            // dispModal();
+
         });
     });
     // cards.forEach(card => {
@@ -180,17 +188,17 @@ function ready() {
     //     const openEl = document.querySelector('body > .open');
     //     const modalBtn = document.querySelector('.modal_button');
 
-    //     modal.classList.add('show')
+       
 
     //     modalBtn.addEventListener('click', (evt) => {
     //         modal.classList.remove('show');
     //         console.log('remove me') // will eventually use this button to start the game
 
-    //         // openEl.addEventListener('click', (evt) => {
-    //         //     modal.classList.add('show');
-    //         //     // modal.style.display = ('block');
-    //         //     console.log('try me')
-    //         // })
+    //         openEl.addEventListener('click', (evt) => {
+    //             modal.classList.add('show');
+    //             // modal.style.display = ('block');
+    //             console.log('try me')
+    //         })
 
 
     //     })
@@ -232,7 +240,7 @@ function ready() {
     let hrdBtnEl = document.getElementById('hard');
     hrdBtnEl.addEventListener('click', (evt) => {
         changeCardBacks('hard')
-        let hardGame = new Game(25, cards);
+        let hardGame = new Game(35, cards);
         hardGame.startGame()
 
         cards.forEach(card => {
@@ -248,10 +256,16 @@ function ready() {
         let backFace
         if (difficulty === 'easy') {
             backFace = '/char_imgs/water_tribe.png'
+            document.getElementById('medium').disabled = true;
+            document.getElementById('hard').disabled = true;
         } else if (difficulty === 'medium') {
             backFace = '/char_imgs/earth_king.jpg'
+            document.getElementById('easy').disabled = true;
+            document.getElementById('hard').disabled = true;
         } else if (difficulty === 'hard') {
             backFace = '/char_imgs/fire_nation.png'
+            document.getElementById('medium').disabled = true;
+            document.getElementById('easy').disabled = true;
         } else {
             backFace = '/char_imgs/air_nomad.png'
         }
@@ -262,8 +276,6 @@ function ready() {
     }
 
 }
-
-
 ready();
 
 
@@ -271,9 +283,9 @@ ready();
 
 //THINGS TO DO\\
 /*
-Finish the buttons- add event listeners  that will change the timer and the card back colors
-Create the timer
-create the matching function -sepererate functio for if not a match?
-call for the game over and winning overlays
+done-Finish the buttons- add event listeners  that will change the timer and the card back colors
+done-Create the timer
+done-create the matching function -sepererate function for if not a match?
+done-call for the game over and winning overlays
 fix modal and add it to the ready function
  */

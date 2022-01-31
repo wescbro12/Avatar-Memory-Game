@@ -58,7 +58,7 @@ body {
     display: flex;
     flex-direction: column;
     animation: overlay-grow 500ms forwards;
-    
+       
 }
 
 @keyframes overlay-grow {
@@ -76,13 +76,13 @@ body {
 .gameStats{
     grid-column: 1/ -1;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 .timeInfo {
     font-family: 'Yatra One', cursive;
     font-size: 4em;
-    color:rgba(255, 154, 154, 0.897);
-    justify-content: space-evenly;
+    color:rgba(153, 34, 34, 0.993);
+    justify-content:center;
 }
 
 .card {
