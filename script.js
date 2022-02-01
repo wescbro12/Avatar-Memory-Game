@@ -17,14 +17,10 @@ class Game {
         this.totalTime = totalTime;
         this.timeRemaining = totalTime;
         this.timer = document.getElementById('time-remaining');
-        // this.ticker = document.getElementById('clicks');
-
-
     }
     //start game function\\
     startGame() {
         this.cardToCheck = null;
-        // this.totalClicks = 0;
         this.timeRemaining = this.totalTime;
         this.matchedCards = [];
         this.busy = true;
@@ -33,10 +29,8 @@ class Game {
             this.counter = this.startCounter();
             this.busy = false;
         }, 500)
-       
 
         this.timer.innerText = this.timeRemaining;
-        // this.ticker.innerText = this.totalClicks;
     }
 
     //Timer function\\
@@ -50,20 +44,21 @@ class Game {
             }
         }, 1000);
     }
-
-
-    hideCards() {
-        this.matchedCards.forEach(card => {
-            card.classList.add('matched');
-        });
+    // Card Shuffle- Fisher-Yates shuffle\\
+    shuffleCards() {
+        for (let i = this.cardsArray.length - 1; i > 0; i--) {
+            let randInd = Math.floor(Math.random() * (i + 1));
+            this.cardsArray[randInd].style.order = i;
+            this.cardsArray[i].style.order = randInd;
+        }
     }
+
+
 
 
     // card flip function\\
     flipCard(card) {
         if (this.canFlip(card)) {
-            // this.totalClicks++;
-            // this.ticker.innerText = this.totalClicks;
             card.classList.add('visable');
             console.log('ah, you clicked me');
 
@@ -81,14 +76,18 @@ class Game {
 
         // return true
     }
-
+    removeCards() {
+        this.matchedCards.forEach(card => {
+            card.classList.add('matched');
+        });
+    }
     //check if cards match\\
 
     checkCardMatch(card) {
-        if (this.getCardType(card) === this.getCardType(this.cardToCheck)) {
+        if (this.getCardFront(card) === this.getCardFront(this.cardToCheck)) {
             this.cardMatch(card, this.cardToCheck);
             setTimeout(() => {
-                this.hideCards()
+                this.removeCards()
             }, 900)
 
         } else {
@@ -99,7 +98,7 @@ class Game {
 
     }
 
-    getCardType(card) {
+    getCardFront(card) {
         return card.getElementsByClassName('front-face')[0].src;
     }
 
@@ -147,16 +146,6 @@ class Game {
 
 
 
-    // Card Shuffle- Fisher-Yates shuffle\\
-    shuffleCards() {
-        for (let i = this.cardsArray.length - 1; i > 0; i--) {
-            let randInd = Math.floor(Math.random() * (i + 1));
-            this.cardsArray[randInd].style.order = i;
-            this.cardsArray[i].style.order = randInd;
-        }
-    }
-
-
 
 }
 
@@ -177,13 +166,13 @@ function ready() {
 
         });
     });
-   
+
     function dispModal() {
         const modal = document.getElementById('wel-modal');
         const openEl = document.querySelector('body > .open');
         const modalBtn = document.querySelector('.modal_button');
         modal.style.display = ('block');
-       
+
 
         modalBtn.addEventListener('click', (evt) => {
             modal.style.display = 'none';
@@ -191,14 +180,14 @@ function ready() {
 
             openEl.addEventListener('click', (evt) => {
                 modal.classList.add('show');
-                
+
                 console.log('try me')
             })
 
 
         })
     }
-    
+
 
     //button functions\\
     // get the colors of the back of the cards to change when a diff is selected
@@ -274,7 +263,12 @@ function ready() {
 ready();
 
 
-
+/** RESOURCES
+ * MDN
+ * W3SCHOOLS
+ * https://www.youtube.com/watch?v=28VfzEiJgy4
+ * https://www.youtube.com/watch?v=3uuQ3g92oPQ
+ */
 
 //THINGS TO DO\\
 /*
@@ -282,5 +276,10 @@ done-Finish the buttons- add event listeners  that will change the timer and the
 done-Create the timer
 done-create the matching function -sepererate function for if not a match?
 done-call for the game over and winning overlays
-fix modal and add it to the ready function
+done-fix modal and add it to the ready function
  */
+
+//WISH LIST FOR LATER\\
+/* HAVE aPPA FLY ACROSS THE BOARD WHEN A NEW GAME STARTS
+ADD SOUND TO THE GAME
+POSSIBLY HAVE HARD MODE RESHUFFLE AFTER EVERY MATCH */
