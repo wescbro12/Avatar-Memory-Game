@@ -33,7 +33,7 @@ class Game {
             this.counter = this.startCounter();
             this.busy = false;
         }, 500)
-        // this.hideCards();
+       
 
         this.timer.innerText = this.timeRemaining;
         // this.ticker.innerText = this.totalClicks;
@@ -250,19 +250,19 @@ function ready() {
     function changeCardBacks(difficulty) {
         let backFace
         if (difficulty === 'easy') {
-            backFace = '/char_imgs/water_tribe.png'
+            backFace = 'char_imgs/water_tribe.png'
             document.getElementById('medium').disabled = true;
             document.getElementById('hard').disabled = true;
         } else if (difficulty === 'medium') {
-            backFace = '/char_imgs/earth_king.jpg'
+            backFace = 'char_imgs/earth_king.jpg'
             document.getElementById('easy').disabled = true;
             document.getElementById('hard').disabled = true;
         } else if (difficulty === 'hard') {
-            backFace = '/char_imgs/fire_nation.png'
+            backFace = 'char_imgs/fire_nation.png'
             document.getElementById('medium').disabled = true;
             document.getElementById('easy').disabled = true;
         } else {
-            backFace = '/char_imgs/air_nomad.png'
+            backFace = 'char_imgs/air_nomad.png'
         }
         let cardBacks = Array.from(document.getElementsByClassName('back-face'));
         cardBacks.forEach(back => {

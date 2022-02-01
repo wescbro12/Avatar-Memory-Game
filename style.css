@@ -15,7 +15,7 @@ HARD-20 CARDS
 /* game board background */
 
 body {
-    background-image: url("/char_imgs/king_board.jpg");
+    background-image: url("char_imgs/king_board.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%; 
